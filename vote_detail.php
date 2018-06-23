@@ -1,5 +1,6 @@
 <html lang="en">
     <head>
+
     <?php
 
         include("mysql/mysql.php");
@@ -25,14 +26,18 @@
             <?php
                 for($i=1; $i<=5; $i++){
                     if(empty($row['v_option'.$i]) == FALSE && $row['v_option'.$i] != "NULL"){
-                        $number = explode(",",$row['v_option'.$i]);
-                        $number = count($number);
+                        if( is_null($row['option'.$i.'_number']) == 1){
+                            $number = 0;
+                        }else{
+                            $number = explode(',', $row['option'.$i.'_number']);
+                            $number = count($number);
+                        }
                         echo "<li>".$row['v_option'.$i]."：".$number."票</li>";
                     }
                 }
             ?>
         </ul>
-         <form action="cast_vote.php" method="post" enctype="multipart/form-data">
+        <form action="cast_vote.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value=" <?php echo $id; ?> ">
             <input type="submit" value="我要投票">
         </form>

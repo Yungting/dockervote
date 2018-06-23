@@ -7,6 +7,7 @@
         $id = $_POST["id"];
         $detail_vote = mysqli_query($link, "SELECT * FROM vote WHERE v_id = '$id' ");
         $row = mysqli_fetch_assoc($detail_vote);
+        $u_id = "gg";
     ?>
 
         <meta charset="UTF-8">
@@ -51,22 +52,15 @@
                 echo '<p name="mutiple">只能選一個選項</p>';
             }
 
-            echo '<li><input type="checkbox" class="magic-checkbox" name="radio[]" value="option1">'.$row['v_option1'].'</li>';
-            echo '<li><input type="checkbox" class="magic-checkbox" name="radio[]" value="option2">'.$row['v_option2'].'</li>';
+             for($i=1; $i<=5; $i++){
+                if(empty($row['v_option'.$i]) == FALSE && $row['v_option'.$i] != "NULL"){
+                    // if(stristr($row['option'.$i.'_number'], $u_id) != false){
+                    //     echo '<li><input type="radio" name="radio" value="option"'.$i.' checked disabled >'.$row['v_option'.$i].'</li>';
+                    // }
+                     echo '<li><input type="checkbox" class="magic-checkbox" name="radio[]" value="option'.$i.'">'.$row['v_option'.$i].'</li>';
+                 }
+             }
 
-
-            if(empty($row['v_option5']) == FALSE && $row['v_option5'] != "NULL"){
-                echo '<li><input type="checkbox" class="magic-checkbox" name="radio[]" value="option3">'.$row['v_option3'].'</li>';
-                echo '<li><input type="checkbox" class="magic-checkbox" name="radio[]" value="option4">'.$row['v_option4'].'</li>';
-                echo '<li><input type="checkbox" class="magic-checkbox" name="radio[]" value="option5">'.$row['v_option5'].'</li>';
-            }else if(empty($row['v_option4']) == FALSE && $row['v_option4'] != "NULL"){
-                echo '<li><input type="checkbox" class="magic-checkbox" name="radio[]" value="option3">'.$row['v_option3'].'</li>';
-                echo '<li><input type="checkbox" class="magic-checkbox" name="radio[]" value="option4">'.$row['v_option4'].'</li>';
-            }else if(empty($row['v_option3']) == FALSE && $row['v_option3'] != "NULL"){
-                echo '<li><input type="checkbox" class="magic-checkbox" name="radio[]" value="option3">'.$row['v_option3'].'</li>';
-            }else{
-                
-            }
             ?>
 
             <input type="submit" value="投票">
