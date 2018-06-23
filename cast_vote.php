@@ -17,7 +17,6 @@
         
         <script type="text/javascript">     
         var mutiple = '<?php echo $row["v_mutiple"]; ?>';
-        
         //控制每次最多可投幾票
         $(document).ready(function() {
             // 項目 選取的checkbox
@@ -37,7 +36,7 @@
     <body>
 
     <ul>
-        <li>圖片：<?php echo $row["v_photo"]; ?></li>
+        <li>圖片：<img src=' <?php echo $row["v_photo"]; ?>'</li>
         <li>標題：<?php echo $row["v_title"]; ?> </li>
         <li>發起人：<?php echo $row["v_user"]; ?></li>
         <li>描述：<?php echo $row["v_depiction"]; ?></li>
